@@ -1,7 +1,9 @@
 FROM golang:alpine
 
 ADD . /go/src/github.com/nearmap/kcd
-RUN go install github.com/nearmap/kcd
+WORKDIR /go/src/github.com/nearmap/kcd
+RUN go build -o kcd cmd/kcd/*
+RUN cp kcd /go/bin
 
 RUN rm -r /go/src/github.com/nearmap/kcd
 
